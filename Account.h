@@ -50,12 +50,22 @@ public:
     { 
 		return _money;
 	}
+	
+	TransactionManager* getTmanager(){
+		return tmanager;
+	}
     
     /* Seters */
     void setName(string name)
     { 
 		_fullName = name;
 	}
+	void setMoney(double &money)
+    { 
+		_money = money;
+	}
+	
+	
     
     /* Functions */
 	void printOperations(void)

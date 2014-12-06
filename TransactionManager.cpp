@@ -38,7 +38,7 @@ void TransactionManager::addInputTransaction(double money){
 
 void TransactionManager::addOutputTransaction(double money){
     if (_pHead == NULL) {
-        _pTail = _pHead = new Transaction(inputTypeOperation, money);
+        _pTail = _pHead = new Transaction(outputTypeOperation, money);
     }
     else
     {
@@ -67,7 +67,7 @@ double TransactionManager::getDistinction(void){
 }
 
 int TransactionManager::inputNumTransactions(void){
-		Transaction *p = _pHead;
+	Transaction *p = _pHead;
     
     if (_pHead == NULL) {
         return 0;
@@ -76,7 +76,7 @@ int TransactionManager::inputNumTransactions(void){
     
     while (p != NULL) {
 		if(p->_type == inputTypeOperation){
-    		inputNum =+ 1;
+    		inputNum += 1;
     	}
     	p = p->_pNext;
     }
@@ -84,7 +84,7 @@ int TransactionManager::inputNumTransactions(void){
 }
 
 int TransactionManager::outputNumTransactions(void){
-		Transaction *p = _pHead;
+	Transaction *p = _pHead;
     
     if (_pHead == NULL) {
         return 0;
@@ -93,7 +93,7 @@ int TransactionManager::outputNumTransactions(void){
     
     while (p != NULL) {
 		if(p->_type == outputTypeOperation){
-    		outputNum =+ 1;
+    		outputNum += 1;
     	}
     	p = p->_pNext;
     }
@@ -118,7 +118,7 @@ void TransactionManager::print_transactions(void){
     
     cout << "Primary balance: ";
     cout << _money << endl;
-    cout << "Curient balance: ";
+    cout << "Destination balance: ";
     cout << getDistinction() << endl << endl;
     
     cout << "Details: " << endl << endl;

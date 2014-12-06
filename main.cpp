@@ -23,7 +23,9 @@ int main(int argc, char** argv) {
 	*/
 	
 	AccountsManager *manager = new AccountsManager();
-	installDemoUsers(manager);
+	//installDemoUsers(manager);
+	//Account *user = manager->getAccount("a99997");
+	//edit_client_menu(user);
     userInterface(manager);
 	return 0;
 	
@@ -85,6 +87,10 @@ void edit_client_menu(Account *user){
 			cout << "'clear' - Clear console." << endl;
 			cout << "'name' - edit name" << endl;
 			cout << "'info' - info about this user" << endl;
+			cout << "'add_input' - add input transaction" << endl;
+			cout << "'add_output' - add input transaction" << endl;
+			cout << "'see_operations' - see all transactions" << endl;
+			cout << "'get_destination' - destination summ" << endl;
 			
 			
 		}
@@ -105,9 +111,41 @@ void edit_client_menu(Account *user){
 			cout << user->getBalance() << endl;
 			user->printOperations();
 		}
-		else if(command == "save"){
-			cout  << endl << "was saved..."<< endl;
-			
+		else if(command == "add_input"){
+			TransactionManager *tmanager = user->getTmanager();
+			cout << "Enter input sum: ";
+			double m;
+			cin >> m;
+			fflush(stdin);
+			tmanager->addInputTransaction((double)m);
+			double balance = user->getBalance();
+			double result = balance + (double)m;
+			user->setMoney(result);
+			tmanager->print_operation();
+		}
+		else if(command == "add_output"){
+			TransactionManager *tmanager = user->getTmanager();
+			cout << "Enter output sum: ";
+			double m;
+			cin >> m;
+			fflush(stdin);
+			double balance = user->getBalance();
+			if ((double)balance > (double)m){
+				tmanager->addOutputTransaction(m);
+				double result = balance - m;
+				user->setMoney(result);
+			}else{
+				cout << "enough money" << endl;
+			}
+			tmanager->print_operation();
+		}
+		else if(command == "see_operations"){
+			TransactionManager *tmanager = user->getTmanager();
+			tmanager->print_transactions();
+		}
+		else if(command == "get_destination"){
+			TransactionManager *tmanager = user->getTmanager();
+			cout << tmanager->getDistinction() << endl;
 		}
 		
 		else{
