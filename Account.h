@@ -41,6 +41,15 @@ public:
     /* Getters */
     Account* getNext(void)
     { return _pNext; }
+    string getName(void)
+    { 
+		return _fullName;
+	}
+	
+	double getBalance(void)
+    { 
+		return _money;
+	}
     
     
     /* Functions */

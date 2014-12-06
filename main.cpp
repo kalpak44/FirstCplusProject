@@ -10,7 +10,7 @@ void printHelp();
 void print_all_clients(AccountsManager *manager);
 void add_client(AccountsManager *manager);
 void remove_client(AccountsManager *manager);
-
+void edit_client(AccountsManager *manager);
 
 int main(int argc, char** argv) {
 	/*
@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
 	*/
 	
 	AccountsManager *manager = new AccountsManager();
+	installDemoUsers(manager);
     userInterface(manager);
 	return 0;
 	
@@ -69,11 +70,38 @@ void userInterface(AccountsManager *manager){
 		else if(command == "remove_client"){
 			remove_client(manager);
 		}
+		else if(command == "get_client"){
+			edit_client(manager);
+		}
 		
 		else{
 			cout << "Invalid command." << endl << endl;
 		}
 	}
+}
+
+
+
+
+void edit_client(AccountsManager *manager){
+	cout << "Enter user ID: ";
+	string id = "";
+	getline(cin, id);
+	
+	if (manager->isExist(id)){
+		Account user = manager->getAccount(id);
+
+		cout  << endl << "Fullname: " + user.getName() << endl;
+		cout << "Balance: ";
+		cout << user.getBalance() << endl << endl;
+		user.printOperations();
+		cout << "Do you want edit this user? (y/n) ";
+		return;
+	}else{
+		cout << "Not found this ID. Try again..." << endl;
+		edit_client(manager);
+	}
+
 }
 
 void printHelp(){

@@ -121,8 +121,41 @@ void AccountsManager::print_accounts(){
 
 /*  End function */
 
+/* get Account from id */
+Account AccountsManager::getAccount(string id){
+	Account *pNext = NULL;
+    pNext = _pHead;
+
+    while (pNext != NULL) {
+        if (pNext->_id == id) {
+            return *pNext;
+            break; 
+        }
+        pNext = pNext->_pNext;
+    }
+    pNext = NULL;
+    return *pNext;
+}
+/* End Funktion */
 
 
+/* get Account from id */
+bool AccountsManager::isExist(string id){
+	Account *pNext = NULL;
+    pNext = _pHead;
+
+    while (pNext != NULL) {
+        if (pNext->_id == id) {
+            return true;
+            break; 
+        }
+        pNext = pNext->_pNext;
+    }
+    return false;
+}
+/* End Funktion */
+
+/* id generator fumction */
 string AccountsManager::idGenerator(){
 	if(idNum < 10000){
 		idNum = 99999;
@@ -133,3 +166,4 @@ string AccountsManager::idGenerator(){
 	
 	return patch::to_string(idLetter) + patch::to_string(idNum);
 }
+/* End function */

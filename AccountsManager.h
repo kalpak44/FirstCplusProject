@@ -24,7 +24,11 @@ public:
     /* Remove a clients with a specific value if it exists */
     void remove(string id);
     
+    /* get Account from id */
+    Account getAccount(string id);
     
+    /* checking existiing in list */
+    bool isExist(string id);
     
     /* see all */
     void print_accounts();
