@@ -23,11 +23,11 @@ int main(int argc, char** argv) {
 	*/
 	
 	AccountsManager *manager = new AccountsManager();
-	installDemoUsers(manager);
+	//installDemoUsers(manager);
 	//Account *user = manager->getAccount("a99997");
 	//edit_client_menu(user);
-    //userInterface(manager);
-    more_two(manager);
+    userInterface(manager);
+    //more_two(manager);
 	return 0;
 	
 }
@@ -63,7 +63,7 @@ void userInterface(AccountsManager *manager){
 		else if(command == "remove_client"){
 			remove_client(manager);
 		}
-		else if(command == "get_client"){
+		else if(command == "edit_client"){
 			edit_client(manager);
 		}
 		else if(command == "see_more_acc"){
@@ -208,7 +208,7 @@ void printHelp(){
 	cout << "'install_demo' - Intall demo users from the bank." << endl;
 	cout << "'print_clients' - Printing all clients on the bank." << endl;
 	cout << "'remove_client' - remove client by ID" << endl;
-	cout << "'get_client' - get and edit client by ID" << endl;
+	cout << "'edit_client' - edit client by ID" << endl;
 	cout << "'see_more_acc' - sorted names are more than two accounts" << endl;
 	
 }
@@ -225,7 +225,6 @@ void installDemoUsers(AccountsManager *manager){
 	manager->addClient("Anton Ivanov",25.12);
 	manager->addClient("Ivailo Ivanov",1205.12);
 	manager->addClient("Yaskov Ivailov",2.12);
-	
 	
 }
 

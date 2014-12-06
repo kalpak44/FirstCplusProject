@@ -115,7 +115,7 @@ void AccountsManager::print_accounts(){
         cout << "Money balance: ";
 		cout << p->_money << endl;
 		p->printOperations();
-		cout  << endl << endl;
+		cout  << endl;
         p = p->_pNext;
     }
     
