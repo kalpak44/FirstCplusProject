@@ -122,19 +122,17 @@ void AccountsManager::print_accounts(){
 /*  End function */
 
 /* get Account from id */
-Account AccountsManager::getAccount(string id){
+Account* AccountsManager::getAccount(string id){
 	Account *pNext = NULL;
     pNext = _pHead;
 
     while (pNext != NULL) {
         if (pNext->_id == id) {
-            return *pNext;
+            return pNext;
             break; 
         }
         pNext = pNext->_pNext;
     }
-    pNext = NULL;
-    return *pNext;
 }
 /* End Funktion */
 

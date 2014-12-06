@@ -25,7 +25,7 @@ public:
     void remove(string id);
     
     /* get Account from id */
-    Account getAccount(string id);
+    Account* getAccount(string id);
     
     /* checking existiing in list */
     bool isExist(string id);

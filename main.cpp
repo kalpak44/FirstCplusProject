@@ -7,10 +7,12 @@
 void userInterface(AccountsManager *manager);
 void installDemoUsers(AccountsManager *manager);
 void printHelp();
-void print_all_clients(AccountsManager *manager);
+void print_clients(AccountsManager *manager);
 void add_client(AccountsManager *manager);
 void remove_client(AccountsManager *manager);
 void edit_client(AccountsManager *manager);
+void edit_client_menu(Account *user);
+
 
 int main(int argc, char** argv) {
 	/*
@@ -30,24 +32,11 @@ int main(int argc, char** argv) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void userInterface(AccountsManager *manager){
+	cout << "Enter 'help' to view documentation." << endl;
 	string command = "";
 	while(true){
-		cout << endl <<"Please enter your command." << endl;
+		cout << endl <<"It is main menu." << endl << "command > ";
 		getline(cin, command);
 		if(command == "exit") {
 			break;
@@ -57,12 +46,13 @@ void userInterface(AccountsManager *manager){
 		}
 		else if(command == "clear"){
 			system("cls");
+			userInterface(manager);
 		}
 		else if(command == "install_demo"){
 			installDemoUsers(manager);
 		}
-		else if(command == "print_all_clients"){
-			print_all_clients(manager);
+		else if(command == "print_clients"){
+			print_clients(manager);
 		}
 		else if(command == "add_client"){
 			add_client(manager);
@@ -80,7 +70,51 @@ void userInterface(AccountsManager *manager){
 	}
 }
 
-
+void edit_client_menu(Account *user){
+	cout << "Is client editing menu.";
+	string command = "";
+	while(true){
+		cout << endl <<"command > ";
+		getline(cin, command);
+		if(command == "main") {
+			break;
+			return;
+		}
+		else if(command == "help"){
+			cout << "'main' - to back in main menu" <<endl;
+			cout << "'clear' - Clear console." << endl;
+			cout << "'name' - edit name" << endl;
+			cout << "'info' - info about this user" << endl;
+			
+			
+		}
+		else if(command == "clear"){
+			system("cls");
+			edit_client_menu(user);
+		}
+		else if(command == "name"){
+			cout << "New fullname: ";
+			string name = "";
+			getline(cin, name);
+			user->setName(name);
+			cout << "Success" << endl;
+		}
+		else if(command == "info"){
+			cout  << endl << "Fullname: " + user->getName() << endl;
+			cout << "Balance: ";
+			cout << user->getBalance() << endl;
+			user->printOperations();
+		}
+		else if(command == "save"){
+			cout  << endl << "was saved..."<< endl;
+			
+		}
+		
+		else{
+			cout << "Invalid command." << endl << endl;
+		}
+	}
+}
 
 
 void edit_client(AccountsManager *manager){
@@ -89,14 +123,21 @@ void edit_client(AccountsManager *manager){
 	getline(cin, id);
 	
 	if (manager->isExist(id)){
-		Account user = manager->getAccount(id);
+		Account *user = manager->getAccount(id);
 
-		cout  << endl << "Fullname: " + user.getName() << endl;
+		cout  << endl << "Fullname: " + user->getName() << endl;
 		cout << "Balance: ";
-		cout << user.getBalance() << endl << endl;
-		user.printOperations();
-		cout << "Do you want edit this user? (y/n) ";
-		return;
+		cout << user->getBalance() << endl;
+		user->printOperations();
+		
+		cout << "Do you want edit this user? ('y' to edit)" << endl;
+		string ch = "";
+		getline(cin, ch);
+		if(ch == "y"){
+			edit_client_menu(user);
+		}else{
+			return;
+		}
 	}else{
 		cout << "Not found this ID. Try again..." << endl;
 		edit_client(manager);
@@ -108,8 +149,9 @@ void printHelp(){
 	cout << "'exit' - Exit." << endl;
 	cout << "'clear' - Clear console." << endl;
 	cout << "'install_demo' - Intall demo users from the bank." << endl;
-	cout << "'print_all_clients' - Printing all clients on the bank." << endl;
+	cout << "'print_clients' - Printing all clients on the bank." << endl;
 	cout << "'remove_client' - remove client by ID" << endl;
+	cout << "'get_client' - get and edit client by ID" << endl;
 }
 
 void installDemoUsers(AccountsManager *manager){
@@ -118,7 +160,7 @@ void installDemoUsers(AccountsManager *manager){
 	manager->addClient("Ivailo Ivanov",125.12);
 }
 
-void print_all_clients(AccountsManager *manager){
+void print_clients(AccountsManager *manager){
 	manager->print_accounts();
 }
 

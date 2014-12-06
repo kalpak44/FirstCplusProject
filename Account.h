@@ -51,6 +51,11 @@ public:
 		return _money;
 	}
     
+    /* Seters */
+    void setName(string name)
+    { 
+		_fullName = name;
+	}
     
     /* Functions */
 	void printOperations(void)
