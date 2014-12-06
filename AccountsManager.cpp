@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include<set>
+
 
 using namespace std;
 
@@ -165,3 +167,30 @@ string AccountsManager::idGenerator(){
 	return patch::to_string(idLetter) + patch::to_string(idNum);
 }
 /* End function */
+
+
+vector<string> AccountsManager::find_accounts(){
+	vector <string> names;
+
+	Account *p = _pHead;
+    Account *n = _pHead;
+    
+    if (_pHead == NULL) {
+        return names;
+    }
+    
+	set<string> setNames;
+	
+    while (p != NULL) { 
+        string name =  p->_fullName;
+        if(setNames.find(name) != setNames.end()){
+    		names.push_back(name);
+    	}else{
+    		setNames.insert(name);
+    	}
+       	
+        p = p->_pNext;
+    }
+    return names;
+
+}

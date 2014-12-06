@@ -1,5 +1,5 @@
 #include "Account.h"
-
+#include <vector>
 
 class AccountsManager
 {
@@ -32,4 +32,6 @@ public:
     
     /* see all */
     void print_accounts();
+    /*find names who names are more two accounts*/
+    std::vector<string> find_accounts();
 };

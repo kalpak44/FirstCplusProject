@@ -2,7 +2,7 @@
 #include "AccountsManager.h"
 #include <string>
 #include <stdlib.h>
-
+#include <algorithm>
 
 void userInterface(AccountsManager *manager);
 void installDemoUsers(AccountsManager *manager);
@@ -12,7 +12,7 @@ void add_client(AccountsManager *manager);
 void remove_client(AccountsManager *manager);
 void edit_client(AccountsManager *manager);
 void edit_client_menu(Account *user);
-
+void more_two(AccountsManager *manager);
 
 int main(int argc, char** argv) {
 	/*
@@ -23,10 +23,11 @@ int main(int argc, char** argv) {
 	*/
 	
 	AccountsManager *manager = new AccountsManager();
-	//installDemoUsers(manager);
+	installDemoUsers(manager);
 	//Account *user = manager->getAccount("a99997");
 	//edit_client_menu(user);
-    userInterface(manager);
+    //userInterface(manager);
+    more_two(manager);
 	return 0;
 	
 }
@@ -65,12 +66,29 @@ void userInterface(AccountsManager *manager){
 		else if(command == "get_client"){
 			edit_client(manager);
 		}
+		else if(command == "see_more_acc"){
+			more_two(manager);
+		}
 		
 		else{
 			cout << "Invalid command." << endl << endl;
 		}
 	}
 }
+
+
+void more_two(AccountsManager *manager){
+	vector<string> names = manager->find_accounts();
+	if (names.empty()){
+		cout << "Empty" << endl;
+		return;
+	}
+	//sort( names.begin(), names.end());
+	for(int i = 0; i < names.size(); i++){
+		cout << names[i] << endl;
+	}
+}
+
 
 void edit_client_menu(Account *user){
 	cout << "Is client editing menu.";
@@ -91,6 +109,7 @@ void edit_client_menu(Account *user){
 			cout << "'add_output' - add input transaction" << endl;
 			cout << "'see_operations' - see all transactions" << endl;
 			cout << "'get_destination' - destination summ" << endl;
+			
 			
 			
 		}
@@ -190,12 +209,24 @@ void printHelp(){
 	cout << "'print_clients' - Printing all clients on the bank." << endl;
 	cout << "'remove_client' - remove client by ID" << endl;
 	cout << "'get_client' - get and edit client by ID" << endl;
+	cout << "'see_more_acc' - sorted names are more than two accounts" << endl;
+	
 }
 
 void installDemoUsers(AccountsManager *manager){
+	manager->addClient("Anton Ivanov",255.12);
 	manager->addClient("Petr Petrov",45.55);
 	manager->addClient("Ivan Petrov",88.55);
 	manager->addClient("Ivailo Ivanov",125.12);
+	manager->addClient("Ivailo Antonov",122.12);
+	manager->addClient("Vasil Ivanov",25.12);
+	manager->addClient("Nikola Ivanov",5.12);
+	manager->addClient("Yaskov Ivailov",2.12);
+	manager->addClient("Anton Ivanov",25.12);
+	manager->addClient("Ivailo Ivanov",1205.12);
+	manager->addClient("Yaskov Ivailov",2.12);
+	
+	
 }
 
 void print_clients(AccountsManager *manager){
