@@ -168,7 +168,7 @@ string AccountsManager::idGenerator(){
 }
 /* End function */
 
-
+/* Names who are more at two accounts */
 vector<string> AccountsManager::find_accounts(){
 	vector <string> names;
 
@@ -193,4 +193,21 @@ vector<string> AccountsManager::find_accounts(){
     }
     return names;
 
+}
+
+/* End Function */
+
+int AccountsManager::count(){
+	Account *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return 0;
+    }
+    
+	int i = 0;
+    while (p != NULL) {
+    	i++;
+        p = p->_pNext;
+    }
+    return i;
 }

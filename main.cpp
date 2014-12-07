@@ -13,6 +13,7 @@ void remove_client(AccountsManager *manager);
 void edit_client(AccountsManager *manager);
 void edit_client_menu(Account *user);
 void more_two(AccountsManager *manager);
+void count(AccountsManager *manager);
 
 int main(int argc, char** argv) {
 	/*
@@ -69,11 +70,19 @@ void userInterface(AccountsManager *manager){
 		else if(command == "see_more_acc"){
 			more_two(manager);
 		}
+		else if(command == "count_clients"){
+			count(manager);
+		}
 		
 		else{
 			cout << "Invalid command." << endl << endl;
 		}
 	}
+}
+
+void count(AccountsManager *manager){
+	cout << "Found clients: ";
+	cout << manager->count() << endl;
 }
 
 
@@ -109,6 +118,7 @@ void edit_client_menu(Account *user){
 			cout << "'add_output' - add input transaction" << endl;
 			cout << "'see_operations' - see all transactions" << endl;
 			cout << "'get_destination' - destination summ" << endl;
+			
 			
 			
 			
@@ -210,6 +220,7 @@ void printHelp(){
 	cout << "'remove_client' - remove client by ID" << endl;
 	cout << "'edit_client' - edit client by ID" << endl;
 	cout << "'see_more_acc' - sorted names are more than two accounts" << endl;
+	cout << "'count_clients' - print count client" << endl;
 	
 }
 
