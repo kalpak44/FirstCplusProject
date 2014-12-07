@@ -45,4 +45,7 @@ public:
 	/*names and summ where inputs equals outputs sum*/
     std::vector<string> find_equals();
     
+    /* save to XML */
+    void save_to_XML();
+    
 };

@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o AccountsManager.o TransactionManager.o
-LINKOBJ  = main.o AccountsManager.o TransactionManager.o
+OBJ      = main.o AccountsManager.o TransactionManager.o Markup.o
+LINKOBJ  = main.o AccountsManager.o TransactionManager.o Markup.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include"
@@ -33,3 +33,6 @@ AccountsManager.o: AccountsManager.cpp
 
 TransactionManager.o: TransactionManager.cpp
 	$(CPP) -c TransactionManager.cpp -o TransactionManager.o $(CXXFLAGS)
+
+Markup.o: Markup.cpp
+	$(CPP) -c Markup.cpp -o Markup.o $(CXXFLAGS)

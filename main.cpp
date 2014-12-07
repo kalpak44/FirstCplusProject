@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iomanip>
 
-
 void userInterface(AccountsManager *manager);
 void installDemoUsers(AccountsManager *manager);
 void printHelp();
@@ -19,6 +18,7 @@ void more_two(AccountsManager *manager);
 void count(AccountsManager *manager);
 void get_destination(AccountsManager *manager);
 void get_equals(AccountsManager *manager);
+void save(AccountsManager *manager);
 
 
 int main(int argc, char** argv) {
@@ -84,6 +84,9 @@ void userInterface(AccountsManager *manager){
 		}
 		else if(command == "get_equals"){
 			get_equals(manager);
+		}
+		else if(command == "save"){
+			save(manager);
 		}
 		
 		else{
@@ -262,7 +265,18 @@ void printHelp(){
 	cout << "'count_clients' - print count client" << endl;
 	cout << "'get_destination' - destination summ of all bank" << endl;
 	cout << "'get_equals' - see accounts where input quals output summ" << endl;
+	cout << "'save' - save all in XML" << endl;
 	
+	
+}
+
+void save(AccountsManager *manager){
+	if(manager->count() == 0){
+		cout << "not saved. none clients" << endl;
+	}else{
+		manager->save_to_XML();
+		cout << "saved." << endl;
+	}
 }
 
 void installDemoUsers(AccountsManager *manager){

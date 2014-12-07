@@ -3,9 +3,11 @@
 #include <string>
 #include <sstream>
 #include<set>
-
+#include "Markup.h"
 
 using namespace std;
+string SAVE_FILE = "Sample.xml";
+
 
 /* to string path*/
 namespace patch
@@ -262,3 +264,29 @@ vector<string> AccountsManager::find_equals(){
     return eq_infos;
 }
 /* End Function */
+
+void AccountsManager::save_to_XML(){
+	Account *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return;
+    }
+	
+	CMarkup xml;
+	xml.AddElem("ORDER");
+	xml.IntoElem();
+	
+    while (p != NULL) {
+    	xml.AddElem("CLIENT");
+    	xml.IntoElem();
+    	xml.AddElem( "ID",p->getId());
+    	xml.AddElem( "NAMES",p->getName());
+    	xml.AddElem( "BALANCE",patch::to_string(p->getBalance()));
+    	xml.AddElem( "TRANSACTIONS");
+    	xml.OutOfElem();
+        p = p->_pNext;
+    }
+	xml.Save( SAVE_FILE );
+}
+
+
