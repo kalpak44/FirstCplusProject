@@ -14,6 +14,7 @@ void edit_client(AccountsManager *manager);
 void edit_client_menu(Account *user);
 void more_two(AccountsManager *manager);
 void count(AccountsManager *manager);
+void get_destination(AccountsManager *manager);
 
 int main(int argc, char** argv) {
 	/*
@@ -73,11 +74,22 @@ void userInterface(AccountsManager *manager){
 		else if(command == "count_clients"){
 			count(manager);
 		}
+		else if(command == "get_destination"){
+			get_destination(manager);
+		}
 		
 		else{
 			cout << "Invalid command." << endl << endl;
 		}
 	}
+}
+
+
+void get_destination(AccountsManager *manager){
+	count(manager);
+		
+	cout << "Destination: ";
+	cout << manager->get_destination() << endl;
 }
 
 void count(AccountsManager *manager){
@@ -221,6 +233,7 @@ void printHelp(){
 	cout << "'edit_client' - edit client by ID" << endl;
 	cout << "'see_more_acc' - sorted names are more than two accounts" << endl;
 	cout << "'count_clients' - print count client" << endl;
+	cout << "'get_destination' - destination summ of all bank" << endl;
 	
 }
 

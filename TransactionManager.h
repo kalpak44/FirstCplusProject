@@ -20,6 +20,9 @@ public:
     void addOutputTransaction(double money);
     int outputNumTransactions();
 	double getDistinction(void);
+	double getInput(void);
+	double getOutput(void);
+	
     
     /* see all */
     void print_transactions(void);

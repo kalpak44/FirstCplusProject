@@ -33,8 +33,11 @@ public:
     /* see all */
     void print_accounts();
     
-     /* count account */
+    /* count account */
     int count();
+    
+	/* get all destination transactions  */
+	double get_destination();
     
     /*find names who names are more two accounts*/
     std::vector<string> find_accounts();

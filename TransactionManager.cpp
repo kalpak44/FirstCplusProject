@@ -47,6 +47,38 @@ void TransactionManager::addOutputTransaction(double money){
     }
 }
 
+double TransactionManager::getInput(void){
+	Transaction *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return 0;
+    }
+    double summ = 0;
+    while (p != NULL) {
+    	if(p->_type == inputTypeOperation){
+    		summ = summ + p->getMoneyBalance();
+    	}
+    	p = p->_pNext;
+    }
+    return summ;
+}
+
+double TransactionManager::getOutput(void){
+	Transaction *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return 0;
+    }
+    double summ = 0;
+    while (p != NULL) {
+    	if(p->_type == outputTypeOperation){
+    		summ = summ + p->getMoneyBalance();
+    	}
+    	p = p->_pNext;
+    }
+    return summ;
+}
+
 double TransactionManager::getDistinction(void){
 	Transaction *p = _pHead;
     

@@ -197,6 +197,7 @@ vector<string> AccountsManager::find_accounts(){
 
 /* End Function */
 
+/* Get count accounts*/
 int AccountsManager::count(){
 	Account *p = _pHead;
     
@@ -211,3 +212,26 @@ int AccountsManager::count(){
     }
     return i;
 }
+/* End Function */
+
+/* get all sum destination */
+double AccountsManager::get_destination(){
+	Account *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return 0;
+    }
+    
+	double input_summ = 0;
+	double output_summ = 0;
+	
+    while (p != NULL) {
+    	input_summ += p->tmanager->getInput();
+    	output_summ += p->tmanager->getOutput();
+        p = p->_pNext;
+    }
+    
+    
+    return input_summ - output_summ;
+}
+/* End Function */
