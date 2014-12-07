@@ -235,3 +235,30 @@ double AccountsManager::get_destination(){
     return input_summ - output_summ;
 }
 /* End Function */
+
+
+/*names and summ where inputs equals outputs sum*/
+vector<string> AccountsManager::find_equals(){
+	vector <string> eq_infos;
+	Account *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return eq_infos;
+    }
+    
+    while (p != NULL) {
+    	double in = p->getTmanager()->getInput();
+    	double out = p->getTmanager()->getOutput();
+    	if (out == in){
+    		string r_struct = p->getId() + " ";
+			r_struct += p->getName() + " ";
+    		r_struct += patch::to_string(p->getBalance());
+    		eq_infos.push_back(r_struct);
+    	}
+        p = p->_pNext;
+    }
+    
+    
+    return eq_infos;
+}
+/* End Function */

@@ -3,6 +3,9 @@
 #include <string>
 #include <stdlib.h>
 #include <algorithm>
+#include <fstream>
+#include <iomanip>
+
 
 void userInterface(AccountsManager *manager);
 void installDemoUsers(AccountsManager *manager);
@@ -15,6 +18,8 @@ void edit_client_menu(Account *user);
 void more_two(AccountsManager *manager);
 void count(AccountsManager *manager);
 void get_destination(AccountsManager *manager);
+void get_equals(AccountsManager *manager);
+
 
 int main(int argc, char** argv) {
 	/*
@@ -77,6 +82,9 @@ void userInterface(AccountsManager *manager){
 		else if(command == "get_destination"){
 			get_destination(manager);
 		}
+		else if(command == "get_equals"){
+			get_equals(manager);
+		}
 		
 		else{
 			cout << "Invalid command." << endl << endl;
@@ -97,6 +105,28 @@ void count(AccountsManager *manager){
 	cout << manager->count() << endl;
 }
 
+void get_equals(AccountsManager *manager){
+	vector<string> users = manager->find_equals();
+	if (users.empty()){
+		cout << "Empty" << endl;
+		return;
+	}
+	
+	for(int i = 0; i < users.size(); i++){
+		cout << users[i] << endl;
+	}
+	cout << endl <<"Do you want to save this info in file? ('y' - to save) ";
+	string ch = "";
+	getline(cin, ch);
+	if(ch == "y"){
+		ofstream f;
+		f.open("accounts.txt", ios::out);
+		for(int i = 0; i < users.size(); i++){
+			f << users[i] << endl;
+		}
+		cout << "Success.";
+	}
+}
 
 void more_two(AccountsManager *manager){
 	vector<string> names = manager->find_accounts();
@@ -104,7 +134,7 @@ void more_two(AccountsManager *manager){
 		cout << "Empty" << endl;
 		return;
 	}
-	//sort( names.begin(), names.end());
+	sort( names.begin(), names.end());
 	for(int i = 0; i < names.size(); i++){
 		cout << names[i] << endl;
 	}
@@ -130,9 +160,6 @@ void edit_client_menu(Account *user){
 			cout << "'add_output' - add input transaction" << endl;
 			cout << "'see_operations' - see all transactions" << endl;
 			cout << "'get_destination' - destination summ" << endl;
-			
-			
-			
 			
 		}
 		else if(command == "clear"){
@@ -234,6 +261,7 @@ void printHelp(){
 	cout << "'see_more_acc' - sorted names are more than two accounts" << endl;
 	cout << "'count_clients' - print count client" << endl;
 	cout << "'get_destination' - destination summ of all bank" << endl;
+	cout << "'get_equals' - see accounts where input quals output summ" << endl;
 	
 }
 

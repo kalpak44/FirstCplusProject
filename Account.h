@@ -41,6 +41,12 @@ public:
     /* Getters */
     Account* getNext(void)
     { return _pNext; }
+    
+    string getId(void)
+    { 
+		return _id;
+	}
+    
     string getName(void)
     { 
 		return _fullName;

@@ -41,4 +41,8 @@ public:
     
     /*find names who names are more two accounts*/
     std::vector<string> find_accounts();
+    
+	/*names and summ where inputs equals outputs sum*/
+    std::vector<string> find_equals();
+    
 };
