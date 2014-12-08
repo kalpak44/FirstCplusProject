@@ -48,4 +48,7 @@ public:
     /* save to XML */
     void save_to_XML();
     
+    /* load from XML */
+    void load_XML();
+    
 };

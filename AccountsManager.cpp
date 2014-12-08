@@ -276,6 +276,52 @@ void AccountsManager::save_to_XML(){
 
 /* End Function */
 
+/* Load from XML file*/
+void AccountsManager::load_XML(){
+	CMarkup xml;
+	xml.Load(SAVE_FILE);
+	xml.FindElem(); // ORDER element
+	xml.IntoElem(); // inside ORDER
+	while (xml.FindElem("CLIENT")){
+		xml.IntoElem();
+		xml.FindElem("ID");
+	    MCD_STR id = xml.GetData();
+	    
+	    xml.FindElem("NAMES");
+	    MCD_STR name = xml.GetData();
+	    
+	    xml.FindElem("BALANCE");
+	    MCD_STR str_balance = xml.GetData();
+	    double d_balance = atof(str_balance.c_str());
+	    
+	    cout << id << endl;
+	    cout << name << endl;
+	    cout << d_balance << endl;
+	    
+	    
+	   xml.FindElem("TRANSACTIONS");
+	   xml.IntoElem();
+	    while(xml.FindElem("IN")){
+	    	
+			MCD_STR in = xml.GetData();
+			double d_in = atof(in.c_str());
+	    	cout << "IN: "+ in << endl;
+	    }
+	    while(xml.FindElem("OUT")){
+	    	
+			MCD_STR out = xml.GetData();
+			double d_out = atof(out.c_str());
+	    	cout << "OUT: "+ out << endl;
+	    }
+	    
+		cout  << endl;
+	    xml.OutOfElem();
+	    xml.OutOfElem();
+	    
+	}
+}
+
+
 /* Print */
 void AccountsManager::print_accounts(){
 	Account *p = _pHead;

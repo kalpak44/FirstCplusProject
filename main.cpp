@@ -20,6 +20,7 @@ void count(AccountsManager *manager);
 void get_destination(AccountsManager *manager);
 void get_equals(AccountsManager *manager);
 void save(AccountsManager *manager);
+void load(AccountsManager *manager);
 
 
 int main(int argc, char** argv) {
@@ -45,7 +46,10 @@ int main(int argc, char** argv) {
 	result = balance - 20;
 	user->setMoney(result);
 	save(manager);
-    //more_two(manager);
+	*/
+	load(manager);
+	/*
+    more_two(manager);
 	*/
     
 	userInterface(manager); //console
@@ -99,6 +103,9 @@ void userInterface(AccountsManager *manager){
 		else if(command == "save"){
 			save(manager);
 		}
+		else if(command == "load"){
+			load(manager);
+		}
 		
 		else{
 			cout << "Invalid command." << endl << endl;
@@ -106,6 +113,11 @@ void userInterface(AccountsManager *manager){
 	}
 }
 
+
+void load(AccountsManager *manager){
+	cout << "load data..." <<endl;
+	manager->load_XML();
+}
 
 void get_destination(AccountsManager *manager){
 	count(manager);
@@ -274,7 +286,7 @@ void printHelp(){
 	cout << "'get_equals' - see accounts where input quals output summ" << endl;
 	cout << "'save' - save all in XML" << endl;
 	cout << "'add_client' - add a client" << endl;
-	
+	cout << "'load' - load from XML file" << endl;
 }
 
 void save(AccountsManager *manager){
