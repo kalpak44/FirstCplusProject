@@ -34,8 +34,6 @@ public:
     double getMoneyBalance(void)
     { return _money; }
     
-    
-    
     Transaction* getNext(void)
     { return _pNext; }
 };

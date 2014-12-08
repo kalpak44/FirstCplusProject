@@ -23,7 +23,6 @@ TransactionManager::~TransactionManager()
 /* End Destructor */
 
 
-
 /* Functions */
 void TransactionManager::addInputTransaction(double money){
     if (_pHead == NULL) {
@@ -47,8 +46,6 @@ void TransactionManager::addOutputTransaction(double money){
     }
 }
 
-
-
 Transaction* TransactionManager::getTransactions(int i){
 	Transaction *p = _pHead;
     
@@ -68,12 +65,6 @@ Transaction* TransactionManager::getTransactions(int i){
     	p = p->_pNext;
     }
 }
-
-
-
-
-
-
 
 double TransactionManager::getInput(void){
 	Transaction *p = _pHead;

@@ -248,11 +248,11 @@ void AccountsManager::save_to_XML(){
     while (p != NULL) {
     	xml.AddElem("CLIENT");
     	xml.IntoElem();
-    	xml.AddElem( "ID",p->getId());
-    	xml.AddElem( "NAMES",p->getName());
-    	xml.AddElem( "BALANCE",patch::to_string(p->getBalance()));
+    	xml.AddElem("ID",p->getId());
+    	xml.AddElem("NAMES",p->getName());
+    	xml.AddElem("BALANCE",patch::to_string(p->getBalance()));
     	
-		xml.AddElem( "TRANSACTIONS");
+		xml.AddElem("TRANSACTIONS");
 		xml.IntoElem();
     	
     	
@@ -271,7 +271,7 @@ void AccountsManager::save_to_XML(){
     	xml.OutOfElem();
         p = p->_pNext;
     }
-	xml.Save( SAVE_FILE );
+	xml.Save(SAVE_FILE);
 }
 
 /* End Function */

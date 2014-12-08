@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iomanip>
 
+
 void userInterface(AccountsManager *manager);
 void installDemoUsers(AccountsManager *manager);
 void printHelp();
@@ -22,17 +23,16 @@ void save(AccountsManager *manager);
 
 
 int main(int argc, char** argv) {
+	
+	AccountsManager *manager = new AccountsManager();
+	
+	//My Tests:
 	/*
 	TransactionManager *opert = new TransactionManager(0);
 	opert->addInputTransaction(12.45);
 	opert->addOutputTransaction(2.45);
 	opert->print_operation();
-	*/
 	
-	AccountsManager *manager = new AccountsManager();
-	
-	//My Tests ))
-	/*
 	installDemoUsers(manager);
 	Account *user = manager->getAccount("a99999");
     TransactionManager *tmanager = user->getTmanager();
@@ -45,12 +45,11 @@ int main(int argc, char** argv) {
 	result = balance - 20;
 	user->setMoney(result);
 	save(manager);
-    */
-    
-	userInterface(manager);
     //more_two(manager);
+	*/
+    
+	userInterface(manager); //console
 	return 0;
-	
 }
 
 void userInterface(AccountsManager *manager){
@@ -110,7 +109,6 @@ void userInterface(AccountsManager *manager){
 
 void get_destination(AccountsManager *manager){
 	count(manager);
-		
 	cout << "Destination: ";
 	cout << manager->get_destination() << endl;
 }
@@ -155,7 +153,6 @@ void more_two(AccountsManager *manager){
 	}
 }
 
-
 void edit_client_menu(Account *user){
 	cout << "Is client editing menu.";
 	string command = "";
@@ -176,7 +173,6 @@ void edit_client_menu(Account *user){
 			cout << "'add_output' - add input transaction" << endl;
 			cout << "'see_operations' - see all transactions" << endl;
 			cout << "'get_destination' - destination summ" << endl;
-			
 		}
 		else if(command == "clear"){
 			system("cls");
@@ -231,13 +227,11 @@ void edit_client_menu(Account *user){
 			TransactionManager *tmanager = user->getTmanager();
 			cout << tmanager->getDistinction() << endl;
 		}
-		
 		else{
 			cout << "Invalid command." << endl << endl;
 		}
 	}
 }
-
 
 void edit_client(AccountsManager *manager){
 	cout << "Enter user ID: ";
@@ -279,7 +273,6 @@ void printHelp(){
 	cout << "'get_destination' - destination summ of all bank" << endl;
 	cout << "'get_equals' - see accounts where input quals output summ" << endl;
 	cout << "'save' - save all in XML" << endl;
-	
 	
 }
 
@@ -329,7 +322,6 @@ void add_client(AccountsManager *manager){
 	}
 }
 
-
 void remove_client(AccountsManager *manager){
 	string id = "";
 	
@@ -342,5 +334,3 @@ void remove_client(AccountsManager *manager){
 		cout << "Input value error." << endl;
 	}
 }
-
-

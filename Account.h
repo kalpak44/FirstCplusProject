@@ -13,7 +13,6 @@ private:
     string _fullName;
     double _money;
     TransactionManager *tmanager;
-    
     Account *_pNext; 
     
 public:
@@ -66,6 +65,7 @@ public:
     { 
 		_fullName = name;
 	}
+	
 	void setMoney(double &money)
     { 
 		_money = money;
