@@ -30,22 +30,34 @@ int main(int argc, char** argv) {
 	*/
 	
 	AccountsManager *manager = new AccountsManager();
-	//installDemoUsers(manager);
-	//Account *user = manager->getAccount("a99997");
-	//edit_client_menu(user);
-    userInterface(manager);
+	
+	//My Tests ))
+	/*
+	installDemoUsers(manager);
+	Account *user = manager->getAccount("a99999");
+    TransactionManager *tmanager = user->getTmanager();
+	tmanager->addInputTransaction(200);
+	double balance = user->getBalance();
+	double result = balance + 200;
+	user->setMoney(result);
+	tmanager->addOutputTransaction(20);
+	balance = user->getBalance();
+	result = balance - 20;
+	user->setMoney(result);
+	save(manager);
+    */
+    
+	userInterface(manager);
     //more_two(manager);
 	return 0;
 	
 }
 
-
-
-
 void userInterface(AccountsManager *manager){
 	cout << "Enter 'help' to view documentation." << endl;
 	string command = "";
 	while(true){
+		fflush(stdin);
 		cout << endl <<"It is main menu." << endl << "command > ";
 		getline(cin, command);
 		if(command == "exit") {
@@ -148,6 +160,7 @@ void edit_client_menu(Account *user){
 	cout << "Is client editing menu.";
 	string command = "";
 	while(true){
+		fflush(stdin);
 		cout << endl <<"command > ";
 		getline(cin, command);
 		if(command == "main") {
@@ -291,6 +304,8 @@ void installDemoUsers(AccountsManager *manager){
 	manager->addClient("Anton Ivanov",25.12);
 	manager->addClient("Ivailo Ivanov",1205.12);
 	manager->addClient("Yaskov Ivailov",2.12);
+	cout << "Success."<<endl;
+
 	
 }
 
@@ -308,6 +323,7 @@ void add_client(AccountsManager *manager){
 		cout << "Please enter client money balance." << endl;
 		cin >> money;
 		manager->addClient(name,money);
+		cout << "Success."<<endl;
 	}else{
 		cout << "Input value error." << endl;
 	}
@@ -321,6 +337,7 @@ void remove_client(AccountsManager *manager){
 	getline(cin, id);
 	if(id != ""){
 		manager->remove(id);
+		cout << "Was deleted" << endl;
 	}else{
 		cout << "Input value error." << endl;
 	}

@@ -57,11 +57,6 @@ void AccountsManager::addClient(string fullName, double money){
         _pTail->_pNext = new Account(id, fullName, money);
         _pTail = _pTail->_pNext;
     }
-    cout << "id: " << id <<endl;
-    cout << "Full Name: " << fullName << endl;
-    cout << "Money Balance: " << money << endl;
-    cout << "Was created..." << endl << endl;
-    
 }
 
 /*  End function */
@@ -87,40 +82,12 @@ void AccountsManager::remove(string id){
             if (pDel == _pTail) {
                 _pTail = pPre;
             }
-            cout << "Was deleted" << endl;
             delete pDel; 
             break; 
         }
         pPre = pDel;
         pDel = pDel->_pNext;
     }
-}
-
-/*  End function */
-
-
-/* Print */
-void AccountsManager::print_accounts(){
-	Account *p = _pHead;
-    
-    if (_pHead == NULL) {
-		cout << "The bank is empty!" << endl;
-        return;
-    }
-    
-    cout << "The bank clients: " << endl << endl;
-    
-
-    while (p != NULL) { 
-    	cout << "id: " + p->_id << endl;
-        cout << "Full Name: " + p->_fullName << endl;
-        cout << "Money balance: ";
-		cout << p->_money << endl;
-		p->printOperations();
-		cout  << endl;
-        p = p->_pNext;
-    }
-    
 }
 
 /*  End function */
@@ -265,6 +232,8 @@ vector<string> AccountsManager::find_equals(){
 }
 /* End Function */
 
+
+/* Save at XML file*/
 void AccountsManager::save_to_XML(){
 	Account *p = _pHead;
     
@@ -282,11 +251,51 @@ void AccountsManager::save_to_XML(){
     	xml.AddElem( "ID",p->getId());
     	xml.AddElem( "NAMES",p->getName());
     	xml.AddElem( "BALANCE",patch::to_string(p->getBalance()));
-    	xml.AddElem( "TRANSACTIONS");
+    	
+		xml.AddElem( "TRANSACTIONS");
+		xml.IntoElem();
+    	
+    	
+    	int transact_count = p->getTmanager()->inputNumTransactions();
+    	transact_count += p->getTmanager()->outputNumTransactions();
+    	if (transact_count < 0){
+    		transact_count = 0;
+    	}
+
+    	for(int i = 0; i < transact_count; i++){
+    		Transaction *tr = p->getTmanager()->getTransactions(i);
+    		xml.AddElem( tr->getType(),patch::to_string(tr->getMoneyBalance()));
+    	}
+    	
+    	xml.OutOfElem();
     	xml.OutOfElem();
         p = p->_pNext;
     }
 	xml.Save( SAVE_FILE );
 }
 
+/* End Function */
 
+/* Print */
+void AccountsManager::print_accounts(){
+	Account *p = _pHead;
+    
+    if (_pHead == NULL) {
+		cout << "The bank is empty!" << endl;
+        return;
+    }
+    
+    cout << "The bank clients: " << endl << endl;
+    
+
+    while (p != NULL) { 
+    	cout << "id: " + p->_id << endl;
+        cout << "Full Name: " + p->_fullName << endl;
+        cout << "Money balance: " + patch::to_string(p->getBalance()) << endl;
+		p->printOperations();
+        p = p->_pNext;
+    }
+    
+}
+
+/*  End function */

@@ -47,6 +47,34 @@ void TransactionManager::addOutputTransaction(double money){
     }
 }
 
+
+
+Transaction* TransactionManager::getTransactions(int i){
+	Transaction *p = _pHead;
+    
+    if (_pHead == NULL) {
+        return 0;
+    }
+    if ((i < 0) &&(i > inputNumTransactions()+outputNumTransactions())){
+    	return 0;
+    }
+    int currient = 0;
+    
+    while (p != NULL) {
+		if(currient == i){
+    		return p;
+    	}
+    	currient++;
+    	p = p->_pNext;
+    }
+}
+
+
+
+
+
+
+
 double TransactionManager::getInput(void){
 	Transaction *p = _pHead;
     

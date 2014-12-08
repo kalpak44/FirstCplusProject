@@ -71,7 +71,9 @@ public:
 		_money = money;
 	}
 	
-	
+	void getTmanager(TransactionManager* tm){
+		tmanager = tm;
+	}
     
     /* Functions */
 	void printOperations(void)

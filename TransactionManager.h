@@ -22,7 +22,7 @@ public:
 	double getDistinction(void);
 	double getInput(void);
 	double getOutput(void);
-	
+	Transaction *getTransactions(int i);
     
     /* see all */
     void print_transactions(void);
