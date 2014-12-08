@@ -273,6 +273,7 @@ void printHelp(){
 	cout << "'get_destination' - destination summ of all bank" << endl;
 	cout << "'get_equals' - see accounts where input quals output summ" << endl;
 	cout << "'save' - save all in XML" << endl;
+	cout << "'add_client' - add a client" << endl;
 	
 }
 
