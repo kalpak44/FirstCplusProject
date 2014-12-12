@@ -10,7 +10,7 @@ private:
 	int idNum = 100000;
 	/* id generator */
     string idGenerator();
-    
+    void appendAccount(AccountsManager *manager, string id,string fullName, double money, TransactionManager *tmanager);
 public:
     /* Constructors */
     AccountsManager(string id, string fullName, double money);
@@ -20,6 +20,8 @@ public:
     
     /* Function to append */
     void addClient(string fullName, double money);
+    void addClient(Account *account);
+    
     
     /* Remove a clients with a specific value if it exists */
     void remove(string id);
@@ -49,6 +51,6 @@ public:
     void save_to_XML();
     
     /* load from XML */
-    void load_XML();
+    AccountsManager* load_XML();
     
 };

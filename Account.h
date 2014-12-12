@@ -71,7 +71,7 @@ public:
 		_money = money;
 	}
 	
-	void getTmanager(TransactionManager* tm){
+	void setTmanager(TransactionManager* tm){
 		tmanager = tm;
 	}
     

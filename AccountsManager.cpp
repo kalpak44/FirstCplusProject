@@ -59,7 +59,19 @@ void AccountsManager::addClient(string fullName, double money){
     }
 }
 
-/*  End function */
+void AccountsManager::addClient(Account *account){
+
+    if (_pHead == NULL) {
+        _pTail = _pHead = account;
+    }
+    else
+    {
+        _pTail->_pNext = account;
+        _pTail = _pTail->_pNext;
+    }
+}
+
+/*  End functions */
 
 
 /* Remove element */
@@ -277,12 +289,14 @@ void AccountsManager::save_to_XML(){
 /* End Function */
 
 /* Load from XML file*/
-void AccountsManager::load_XML(){
+AccountsManager* AccountsManager::load_XML(){
+	AccountsManager *acc_manager = new AccountsManager();
 	CMarkup xml;
 	xml.Load(SAVE_FILE);
-	xml.FindElem(); // ORDER element
-	xml.IntoElem(); // inside ORDER
+	xml.FindElem();
+	xml.IntoElem();
 	while (xml.FindElem("CLIENT")){
+		
 		xml.IntoElem();
 		xml.FindElem("ID");
 	    MCD_STR id = xml.GetData();
@@ -290,37 +304,37 @@ void AccountsManager::load_XML(){
 	    xml.FindElem("NAMES");
 	    MCD_STR name = xml.GetData();
 	    
+	    Account *account = new Account(id, name, 0);
+	    
 	    xml.FindElem("BALANCE");
 	    MCD_STR str_balance = xml.GetData();
 	    double d_balance = atof(str_balance.c_str());
 	    
-	    cout << id << endl;
-	    cout << name << endl;
-	    cout << d_balance << endl;
-	    
-	    
 	   xml.FindElem("TRANSACTIONS");
 	   xml.IntoElem();
+	   TransactionManager *tr_manager = new TransactionManager(0);
 	    while(xml.FindElem("IN")){
 	    	
 			MCD_STR in = xml.GetData();
 			double d_in = atof(in.c_str());
-	    	cout << "IN: "+ in << endl;
+	    	tr_manager->addInputTransaction(d_in);
 	    }
 	    while(xml.FindElem("OUT")){
 	    	
 			MCD_STR out = xml.GetData();
 			double d_out = atof(out.c_str());
-	    	cout << "OUT: "+ out << endl;
+	    	tr_manager->addOutputTransaction(d_out);
 	    }
-	    
-		cout  << endl;
+	    account->setTmanager(tr_manager);
+	    account->setMoney(d_balance);
+		acc_manager->addClient(account);
 	    xml.OutOfElem();
 	    xml.OutOfElem();
 	    
 	}
+	return acc_manager;
 }
-
+/* End Function */
 
 /* Print */
 void AccountsManager::print_accounts(){
