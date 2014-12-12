@@ -20,7 +20,7 @@ void count(AccountsManager *manager);
 void get_destination(AccountsManager *manager);
 void get_equals(AccountsManager *manager);
 void save(AccountsManager *manager);
-void load(AccountsManager *manager);
+AccountsManager* load(AccountsManager *manager);
 
 
 int main(int argc, char** argv) {
@@ -46,9 +46,8 @@ int main(int argc, char** argv) {
 	result = balance - 20;
 	user->setMoney(result);
 	save(manager);
-	*/
-	load(manager);
-	/*
+	manager = load(manager);
+	print_clients(manager);
     more_two(manager);
 	*/
     
@@ -104,7 +103,7 @@ void userInterface(AccountsManager *manager){
 			save(manager);
 		}
 		else if(command == "load"){
-			load(manager);
+			manager = load(manager);
 		}
 		
 		else{
@@ -114,9 +113,10 @@ void userInterface(AccountsManager *manager){
 }
 
 
-void load(AccountsManager *manager){
+AccountsManager* load(AccountsManager *manager){
 	cout << "load data..." <<endl;
-	manager->load_XML();
+	return manager->load_XML();
+	cout << "Success." <<endl;
 }
 
 void get_destination(AccountsManager *manager){
