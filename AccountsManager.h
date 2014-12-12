@@ -8,8 +8,6 @@ private:
     Account *_pTail;
 	char idLetter = 'a';
 	int idNum = 100000;
-	/* id generator */
-    string idGenerator();
     void appendAccount(AccountsManager *manager, string id,string fullName, double money, TransactionManager *tmanager);
 public:
     /* Constructors */

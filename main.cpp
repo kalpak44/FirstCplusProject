@@ -46,10 +46,13 @@ int main(int argc, char** argv) {
 	result = balance - 20;
 	user->setMoney(result);
 	save(manager);
-	manager = load(manager);
-	print_clients(manager);
-    more_two(manager);
 	*/
+	//manager = load(manager);
+	//manager->addClient("vasil",120.5);
+	//print_clients(manager);
+	
+    //more_two(manager);
+	
     
 	userInterface(manager); //console
 	return 0;

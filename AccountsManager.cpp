@@ -48,7 +48,21 @@ AccountsManager::~AccountsManager()
 
 /* Add element */
 void AccountsManager::addClient(string fullName, double money){
-	string id = idGenerator();
+	
+	if(idNum < 10000){
+		idNum = 99999;
+		idLetter = static_cast<char>(idLetter + 1);
+	}else{
+		idNum -= 1;
+	}
+	string id = patch::to_string(idLetter) + patch::to_string(idNum);
+	if(isExist(id)){
+		addClient(fullName,money);
+		return;
+	}
+
+	cout << id << endl;
+	
     if (_pHead == NULL) {
         _pTail = _pHead = new Account(id, fullName, money);
     }
@@ -135,24 +149,6 @@ bool AccountsManager::isExist(string id){
     return false;
 }
 /* End Funktion */
-
-/* id generator fumction */
-string AccountsManager::idGenerator(){
-	if(idNum < 10000){
-		idNum = 99999;
-		idLetter = static_cast<char>(idLetter + 1);
-	}else{
-		idNum -= 1;
-	}
-	string result = patch::to_string(idLetter) + patch::to_string(idNum);
-	if(!isExist(result)){
-		return result;
-	}else{
-		idGenerator();
-	}
-	
-}
-/* End function */
 
 /* Names who are more at two accounts */
 vector<string> AccountsManager::find_accounts(){
