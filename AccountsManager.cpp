@@ -144,8 +144,13 @@ string AccountsManager::idGenerator(){
 	}else{
 		idNum -= 1;
 	}
+	string result = patch::to_string(idLetter) + patch::to_string(idNum);
+	if(!isExist(result)){
+		return result;
+	}else{
+		idGenerator();
+	}
 	
-	return patch::to_string(idLetter) + patch::to_string(idNum);
 }
 /* End function */
 
